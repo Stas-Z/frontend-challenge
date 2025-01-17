@@ -1,10 +1,14 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect } from 'react'
 
-import { CatItem, ICat } from '@/entities/Cat'
+import { useSelector } from 'react-redux'
+
+import { CatItem } from '@/entities/Cat'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { HStack } from '@/shared/ui/Stack'
 
 import { fetchCatList } from '../../model/services/fetchCatList'
+import { getCatList } from '../../model/slice/catListSlice'
 
 interface CatListProps {
     className?: string
@@ -12,21 +16,13 @@ interface CatListProps {
 
 export const CatList = memo((props: CatListProps) => {
     const { className } = props
+    const dispatch = useAppDispatch()
 
-    const [cats, setCats] = useState<ICat[]>([])
+    const catList = useSelector(getCatList.selectAll)
 
     useEffect(() => {
-        const loadCats = async () => {
-            try {
-                const data = await fetchCatList({ limit: 35, page: 1 })
-                setCats(data)
-            } catch (err: any) {
-                console.log('Ошибка загрузки')
-            }
-        }
-
-        loadCats()
-    }, [])
+        dispatch(fetchCatList())
+    }, [dispatch])
 
     return (
         <HStack
@@ -34,7 +30,7 @@ export const CatList = memo((props: CatListProps) => {
             gap="48"
             className={classNames('', {}, [className])}
         >
-            {cats.map((cat) => (
+            {catList.map((cat) => (
                 <CatItem cat={cat} key={cat.id} />
             ))}
         </HStack>
