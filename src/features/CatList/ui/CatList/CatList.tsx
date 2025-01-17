@@ -2,8 +2,8 @@ import { memo, useEffect, useState } from 'react'
 
 import { CatItem, ICat } from '@/entities/Cat'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { HStack } from '@/shared/ui/Stack'
 
-import cls from './CatList.module.scss'
 import { fetchCatList } from '../../model/services/fetchCatList'
 
 interface CatListProps {
@@ -18,7 +18,7 @@ export const CatList = memo((props: CatListProps) => {
     useEffect(() => {
         const loadCats = async () => {
             try {
-                const data = await fetchCatList({ limit: 10, page: 1 })
+                const data = await fetchCatList({ limit: 15, page: 1 })
                 setCats(data)
             } catch (err: any) {
                 console.log('Ошибка загрузки')
@@ -29,10 +29,14 @@ export const CatList = memo((props: CatListProps) => {
     }, [])
 
     return (
-        <div className={classNames(cls.catList, {}, [className])}>
+        <HStack
+            wrap="wrap"
+            gap="48"
+            className={classNames('', {}, [className])}
+        >
             {cats.map((cat) => (
                 <CatItem cat={cat} key={cat.id} />
             ))}
-        </div>
+        </HStack>
     )
 })

@@ -2,6 +2,7 @@ import { memo } from 'react'
 
 import { CatList } from '@/features/CatList'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { Page } from '@/widgets/Page'
 
 import cls from './MainPage.module.scss'
 
@@ -13,9 +14,9 @@ const MainPage = (props: MainPageProps) => {
     const { className } = props
 
     return (
-        <div className={classNames(cls.mainPage, {}, [className])}>
+        <Page className={classNames(cls.mainPage, {}, [className])}>
             <CatList />
-        </div>
+        </Page>
     )
 }
 

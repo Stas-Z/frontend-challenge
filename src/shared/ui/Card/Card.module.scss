@@ -1,0 +1,15 @@
+.card {
+    transition: transform 0.3s ease-out;
+    background: white;
+    width: 225px;
+    height: 225px;
+
+    &:hover {
+        transform: scale(1.14);
+        box-shadow: var(--shadow-color);
+    }
+}
+
+.max {
+    width: 100%;
+}

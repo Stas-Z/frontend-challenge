@@ -1,7 +1,5 @@
 {
-    "extends": [
-        "stylelint-config-recommended",
-        "stylelint-config-standard",
+    "extends": [   
         "stylelint-config-standard-scss"
     ],
     "rules": {
@@ -12,8 +10,13 @@
             {
                 "ignoreValues": ["box"]
             }
-        ],
-        "indentation": "tab"
+        ]
     },
-    "plugins": []
+    "overrides": [
+        {
+            "files": ["**/*.scss"],
+            "customSyntax": "postcss-scss"
+        }
+    ],
+    "plugins": ["stylelint-scss"]
 }

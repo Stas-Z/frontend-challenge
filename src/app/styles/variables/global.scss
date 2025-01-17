@@ -1,0 +1,13 @@
+:root {
+    --font-family-main: 'Roboto', serif;
+
+    // s
+    --font-size-s: 14px;
+    --font-s: var(--font-size-s) var(--font-family-main);
+
+    // цвета
+    --navbar-color: #2196f3;
+    --shadow-color: 0 4px 4px 0 rgb(0 0 0 / 25%);
+    --accent-color: #1e88e5;
+    --icon-color: #f24e1e;
+}
