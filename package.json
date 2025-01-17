@@ -13,6 +13,8 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@types/node": "^22.10.7",
+		"@types/react": "^19.0.7",
+		"@types/react-dom": "^19.0.3",
 		"@vitejs/plugin-react-swc": "^3.7.2",
 		"autoprefixer": "^10.4.20",
 		"rollup-plugin-visualizer": "^5.14.0",
@@ -21,5 +23,10 @@
 		"vite-plugin-checker": "^0.8.0",
 		"vite-plugin-svgr": "^4.3.0",
 		"vite-tsconfig-paths": "^5.1.4"
+	},
+	"dependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-router-dom": "^7.1.2"
 	}
 }

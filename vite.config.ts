@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
 	const apiUrl = getApiUrl(mode, process.env.apiUrl);
 
 	const paths: BuildPaths = {
-		entry: path.resolve(__dirname, 'src', 'index.ts'),
+		entry: path.resolve(__dirname, 'src', 'index.tsx'),
 		build: path.resolve(__dirname, 'build'),
 		src: path.resolve(__dirname, 'src'),
 		html: path.resolve(__dirname, 'index.html'),
