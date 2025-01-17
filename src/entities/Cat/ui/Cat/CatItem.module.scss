@@ -6,6 +6,9 @@
 }
 
 .catItem {
+    overflow: hidden;
+    position: relative;
+
     .shadowWraper,
     .shadowWraper2 {
         width: 100%;
@@ -13,11 +16,32 @@
         transition: box-shadow 0.3s ease-out;
     }
 
-    .shadowWraper:hover {
-        box-shadow: 0 9px 18px 0 rgb(0 0 0 / 18%);
+    &::before {
+        position: absolute;
+        content: '';
+        left: 0;
+        bottom: -94px;
+        height: 94px;
+        width: 100%;
+        background: linear-gradient(
+            to top,
+            rgb(255 255 255),
+            rgb(255 255 255 / 0%)
+        );
+        transition: bottom 0.3s ease-out;
     }
 
-    .shadowWraper2:hover {
-        box-shadow: 0 6px 5px 0 rgb(0 0 0 / 24%);
+    &:hover {
+        .shadowWraper {
+            box-shadow: 0 9px 18px 0 rgb(0 0 0 / 18%);
+        }
+
+        .shadowWraper2 {
+            box-shadow: 0 6px 5px 0 rgb(0 0 0 / 24%);
+        }
+
+        &::before {
+            bottom: 0;
+        }
     }
 }

@@ -18,7 +18,7 @@ export const CatList = memo((props: CatListProps) => {
     useEffect(() => {
         const loadCats = async () => {
             try {
-                const data = await fetchCatList({ limit: 15, page: 1 })
+                const data = await fetchCatList({ limit: 35, page: 1 })
                 setCats(data)
             } catch (err: any) {
                 console.log('Ошибка загрузки')

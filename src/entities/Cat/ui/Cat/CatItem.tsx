@@ -26,6 +26,7 @@ export const CatItem = memo((props: CatProps) => {
                         className={cls.img}
                         fallback={<Skeleton width={225} height={225} />}
                     />
+                    <div className={cls.blur} />
                 </div>
             </div>
         </Card>
