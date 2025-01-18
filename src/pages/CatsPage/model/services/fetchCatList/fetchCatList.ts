@@ -4,17 +4,17 @@ import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { ICat } from '@/entities/Cat'
 
 import {
-    getCatListLimit,
-    getCatListPage,
-} from '../selectors/getCatListSelectors'
+    getCatsPageLimit,
+    getCatsPageNum,
+} from '../../selectors/getCatsPageSelectors'
 
 export const fetchCatList = createAsyncThunk<ICat[], void, ThunkConfig<string>>(
-    'catList/fetchCatList',
+    'catsPage/fetchCatList',
     async (_, thunkAPI) => {
         const { extra, rejectWithValue, getState } = thunkAPI
 
-        const page = getCatListPage(getState())
-        const limit = getCatListLimit(getState())
+        const page = getCatsPageNum(getState())
+        const limit = getCatsPageLimit(getState())
 
         try {
             const response = await extra.api.get<ICat[]>('v1/images/search', {

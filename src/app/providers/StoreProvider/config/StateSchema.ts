@@ -1,13 +1,13 @@
 import { AxiosInstance } from 'axios'
 
 import { CatSchema } from '@/entities/Cat'
-import { CatListSchema } from '@/pages/MainPage'
+import { CatsPageSchema } from '@/pages/CatsPage'
 
 import { createReduxStore } from './store'
 
 export interface StateSchema {
     cat: CatSchema
-    catList: CatListSchema
+    catList: CatsPageSchema
 }
 
 export interface ThunkExtraArg {

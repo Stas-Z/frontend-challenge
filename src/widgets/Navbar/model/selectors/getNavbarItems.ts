@@ -1,4 +1,4 @@
-import { getRouteFavorites, getRouteMain } from '@/shared/const/router'
+import { getRouteCats, getRouteFavorites } from '@/shared/const/router'
 
 import { NavbarItemType } from '../types/navbar'
 
@@ -6,7 +6,7 @@ export const useNavbarItems = () => {
     const sidebarItemsList: NavbarItemType[] = [
         {
             id: 1,
-            path: getRouteMain(),
+            path: getRouteCats(),
             text: 'Все котики',
         },
         {

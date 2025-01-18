@@ -1,6 +1,7 @@
 import { memo } from 'react'
 
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice'
 import { HStack } from '@/shared/ui/Stack'
 
 import cls from './Navbar.module.scss'
@@ -15,11 +16,17 @@ export const Navbar = memo((props: NavbarProps) => {
     const { className } = props
 
     const navbarItemsList = useNavbarItems()
+    const isMobile = useDevice()
 
     return (
         <header className={classNames(cls.navbar, {}, [className])}>
             <div className={cls.wrapper}>
-                <HStack wrap="wrap" max maxHeight>
+                <HStack
+                    wrap="wrap"
+                    max
+                    maxHeight
+                    justify={isMobile ? 'center' : 'start'}
+                >
                     {navbarItemsList.map((item) => (
                         <NavbarItem item={item} key={item.id} />
                     ))}

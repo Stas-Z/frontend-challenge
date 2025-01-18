@@ -1,18 +1,18 @@
 import { RouteProps } from 'react-router-dom'
 
+import { CatsPage } from '@/pages/CatsPage'
 import { FavoritesPage } from '@/pages/FavoritesPage'
-import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import {
     AppRoutes,
+    getRouteCats,
     getRouteFavorites,
-    getRouteMain,
 } from '@/shared/const/router'
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
-    [AppRoutes.MAIN_PAGE]: {
-        path: getRouteMain(),
-        element: <MainPage />,
+    [AppRoutes.CATS_PAGE]: {
+        path: getRouteCats(),
+        element: <CatsPage />,
     },
     [AppRoutes.FAVORITES_PAGE]: {
         path: getRouteFavorites(),
