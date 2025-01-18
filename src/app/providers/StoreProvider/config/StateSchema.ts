@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios'
 
 import { CatSchema } from '@/entities/Cat'
-import { CatListSchema } from '@/features/CatList'
+import { CatListSchema } from '@/pages/MainPage'
 
 import { createReduxStore } from './store'
 

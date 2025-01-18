@@ -1,0 +1,17 @@
+.navbarItem {
+    color: rgb(255 255 255 / 70%);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 23px;
+
+    &:hover {
+        transition: all 0.4s ease-out;
+        color: white;
+    }
+}
+
+.active {
+    color: white;
+    background: var(--accent-color);
+}

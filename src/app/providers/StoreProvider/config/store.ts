@@ -1,7 +1,7 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
 
 import { catReducer } from '@/entities/Cat'
-import { catListReducer } from '@/features/CatList'
+import { catListReducer } from '@/pages/MainPage'
 import { $api } from '@/shared/api/api'
 
 import { StateSchema, ThunkExtraArg } from './StateSchema'
