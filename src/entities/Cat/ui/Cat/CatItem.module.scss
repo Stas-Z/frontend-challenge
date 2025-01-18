@@ -5,12 +5,24 @@
     object-position: center;
 }
 
+.likeIcon {
+    position: absolute;
+    bottom: 20px;
+    right: 28px;
+    width: 40px;
+    height: 37px;
+    transition: all 0.3s ease-out;
+    transform: scale(0, 0);
+    color: var(--icon-color);
+}
+
 .catItem {
     overflow: hidden;
     position: relative;
 
     .shadowWraper,
     .shadowWraper2 {
+        // Это не от балды! Это у вас так в макете :)
         width: 100%;
         height: 100%;
         transition: box-shadow 0.3s ease-out;
@@ -40,8 +52,16 @@
             box-shadow: 0 6px 5px 0 rgb(0 0 0 / 24%);
         }
 
+        .likeIcon {
+            transform: scale(1, 1);
+        }
+
         &::before {
             bottom: 0;
         }
+    }
+
+    .clicked {
+        color: var(--icon-color-clicked);
     }
 }

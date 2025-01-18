@@ -24,9 +24,7 @@ export const catListSlice = createSlice({
         ids: [],
         entities: {},
     }),
-    reducers: {
-        updateCat: catListAdapter.updateOne,
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchCatList.pending, (state) => {

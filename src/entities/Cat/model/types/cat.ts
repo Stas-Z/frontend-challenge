@@ -3,3 +3,7 @@ export interface ICat {
     url: string
     like: boolean
 }
+
+export interface CatSchema {
+    likedCats: ICat[]
+}

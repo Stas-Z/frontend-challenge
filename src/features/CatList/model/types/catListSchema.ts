@@ -7,5 +7,4 @@ export interface CatListSchema extends EntityState<ICat, string> {
     page?: number
     isLoading?: boolean
     error?: string
-    like?: boolean
 }
