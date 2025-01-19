@@ -1,10 +1,11 @@
 import axios from 'axios'
 
+const apiKey = import.meta.env.VITE_API_KEY
+
 export const $api = axios.create({
-    baseURL: 'https://api.thecatapi.com/',
+    baseURL: __API__,
     headers: {
         'Content-Type': 'application/json',
-        'x-api-key':
-            'live_bjOPd49SQd1d9QgoDcCErYxIrmYIwfKrJYFlfnYv0VyZzqAsiCfiQ17tRddMzJDu',
+        'x-api-key': apiKey,
     },
 })

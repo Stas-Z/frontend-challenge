@@ -5,8 +5,8 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "start:vite": "vite",
-        "build:prod:vite": "vite build"
+        "start:vite": "cross-env apiUrl=https://api.thecatapi.com vite",
+        "build:prod:vite": "cross-env apiUrl=https://api.thecatapi.com vite build"
     },
     "keywords": [],
     "author": "",
@@ -20,6 +20,7 @@
         "@vitejs/plugin-react-swc": "^3.7.2",
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.9",
+        "cross-env": "^7.0.3",
         "eslint": "^8.10.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-config-prettier": "^8.10.0",
