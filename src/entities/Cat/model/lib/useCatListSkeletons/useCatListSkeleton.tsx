@@ -2,18 +2,18 @@ import { useMemo } from 'react'
 
 import { Skeleton } from '@/shared/ui/Skeleton'
 
-interface UsePostListSkeletonProps {
+interface UseCatListSkeletonProps {
     classname?: string
 }
 
-export const usePostListSkeletons = (props: UsePostListSkeletonProps) => {
+export const useCatListSkeletons = (props: UseCatListSkeletonProps) => {
     const { classname } = props
 
-    const postSkeletons = useMemo(() => new Array(15).fill(null), [])
+    const catSkeletons = useMemo(() => new Array(15).fill(null), [])
 
     return useMemo(
         () =>
-            postSkeletons.map((item, index) => (
+            catSkeletons.map((item, index) => (
                 <Skeleton
                     className={classname}
                     height={225}
@@ -22,6 +22,6 @@ export const usePostListSkeletons = (props: UsePostListSkeletonProps) => {
                     key={index}
                 />
             )),
-        [postSkeletons, classname],
+        [catSkeletons, classname],
     )
 }

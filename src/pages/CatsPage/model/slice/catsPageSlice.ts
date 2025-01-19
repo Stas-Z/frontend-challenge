@@ -40,6 +40,7 @@ export const catsPageSlice = createSlice({
         initState: (state) => {
             state._inited = true
         },
+        updateCatLike: catListAdapter.updateOne,
     },
     extraReducers: (builder) => {
         builder
@@ -49,6 +50,7 @@ export const catsPageSlice = createSlice({
             })
             .addCase(fetchCatList.fulfilled, (state, action) => {
                 state.isLoading = false
+                state.hasMore = action.payload.length >= state.limit
                 catListAdapter.addMany(state, action.payload)
             })
             .addCase(fetchCatList.rejected, (state, action) => {

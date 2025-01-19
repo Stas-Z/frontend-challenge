@@ -15,6 +15,7 @@ export const initCatsPage = createAsyncThunk<void, void, ThunkConfig<string>>(
 
         if (!inited) {
             dispatch(catsPageActions.initState())
+
             dispatch(fetchCatList())
         }
     },

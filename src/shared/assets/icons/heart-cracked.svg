@@ -1,0 +1,20 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="0 0 225 225" width="225" height="225">
+    
+    <!-- Левая часть сердца -->
+    <path class="leftHeart" fill="red" d="M100,131.8l4.1-7.9l-4.5-7.9l3.2-6.9l-5.3-5.8l5.3-7.1L97.5,88l5.3-8.3l-6.3-8.3l3.5-9.2
+        C94.7,55.3,86.5,51,77.9,51c-15.1,0-27,12.9-27,29.4c0,20.2,16.7,36.7,41.9,61.6l7.1,7.1l1.8-8.3L100,131.8z">
+        <animateTransform attributeName="transform" type="rotate" from="0 100 131.8" to="-30 100 131.8" dur="0.8s" fill="freeze" />
+        <animateTransform attributeName="transform" type="translate" from="0 0" to="-10 -10" dur="0.8s" fill="freeze" />
+        <animate attributeName="opacity" from="1" to="0" dur="1.2s" fill="freeze" />
+    </path>
+    
+    <!-- Правая часть сердца -->
+    <path class="rightHeart" fill="red" d="M122.1,51c-8.5,0-16.7,4.3-22.1,11.2l-3.5,9.2l6.3,8.3L97.5,88l5.3,8.1l-5.3,7.1l5.3,5.8l-3.2,6.9l4.5,7.9
+        l-4.1,7.9l1.8,9L100,149l7.1-7c25.2-25,41.9-41.5,41.9-61.7C149,63.9,137.2,51,122.1,51z">
+        <animateTransform attributeName="transform" type="rotate" from="0 122.1 51" to="30 122.1 51" dur="0.8s" fill="freeze" />
+        <animateTransform attributeName="transform" type="translate" from="0 0" to="10 -10" dur="0.8s" fill="freeze" />
+        <animate attributeName="opacity" from="1" to="0" dur="1.2s" fill="freeze" />
+    </path>
+
+</svg>

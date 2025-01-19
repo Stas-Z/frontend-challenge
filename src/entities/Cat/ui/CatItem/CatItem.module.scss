@@ -13,19 +13,19 @@
     height: 37px;
     transition: all 0.3s ease-out;
     transform: scale(0, 0);
-    color: var(--icon-color);
 }
 
 .catItem {
     overflow: hidden;
     position: relative;
+    transition: all 0.3s ease-out;
 
     .shadowWraper,
     .shadowWraper2 {
         // Это не от балды! Это у вас так в макете :)
         width: 100%;
         height: 100%;
-        transition: box-shadow 0.3s ease-out;
+        transition: box-shadow 0.5s ease-out;
     }
 
     &::before {
@@ -59,9 +59,5 @@
         &::before {
             bottom: 0;
         }
-    }
-
-    .clicked {
-        color: var(--icon-color-clicked);
     }
 }

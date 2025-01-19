@@ -1,13 +1,18 @@
-import { memo } from 'react'
+import { memo, useCallback, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { getLikedCats, CatList } from '@/entities/Cat'
+import { CatList } from '@/entities/Cat'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Text } from '@/shared/ui/Text'
 import { Page } from '@/widgets/Page'
 
 import cls from './FavoritesPage.module.scss'
+import { getFavoritePageIsLoading } from '../../model/selectors/getFavoritePageSelectors'
+import { fetchNextCatsPage } from '../../model/services/fetchNextCatsPage/fetchNextCatsPage'
+import { initFavoriteCatsPage } from '../../model/services/initFavoriteCatsPage/initFavoriteCatsPage'
+import { getFavoriteList } from '../../model/slice/favoritePageSlice'
 
 interface FavoritesPageProps {
     className?: string
@@ -15,13 +20,33 @@ interface FavoritesPageProps {
 
 const FavoritesPage = (props: FavoritesPageProps) => {
     const { className } = props
-    const likedCats = useSelector(getLikedCats)
+
+    const dispatch = useAppDispatch()
+
+    const catList = useSelector(getFavoriteList.selectAll)
+
+    const isLoading = useSelector(getFavoritePageIsLoading)
+
+    const onLoadNextPart = useCallback(() => {
+        dispatch(fetchNextCatsPage())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(initFavoriteCatsPage())
+    }, [dispatch])
 
     let content
 
-    if (likedCats.length) {
-        content = <CatList catList={likedCats} />
-    } else {
+    if (catList.length) {
+        content = (
+            <CatList
+                catList={catList}
+                isLoading={isLoading}
+                className={cls.catList}
+            />
+        )
+    }
+    if (!catList.length && !isLoading) {
         content = (
             <Text
                 title="К сожалению вы не выбрали не одного котика :("
@@ -31,7 +56,10 @@ const FavoritesPage = (props: FavoritesPageProps) => {
     }
 
     return (
-        <Page className={classNames(cls.favoritesPage, {}, [className])}>
+        <Page
+            onScrollEnd={onLoadNextPart}
+            className={classNames(cls.favoritesPage, {}, [className])}
+        >
             {content}
         </Page>
     )

@@ -2,19 +2,22 @@ import { memo, useCallback } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import HeartFull from '@/shared/assets/icons/heart-full.svg?react'
-import Heart from '@/shared/assets/icons/heart.svg?react'
-import { classNames, Mods } from '@/shared/lib/classNames/classNames'
+import { USER_ID } from '@/shared/const/user'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { useHover } from '@/shared/lib/hooks/useHover/useHover'
 import { AppImage } from '@/shared/ui/AppImage'
 import { Card } from '@/shared/ui/Card'
-import { Icon } from '@/shared/ui/Icon'
+import { HeartAnimationIcon } from '@/shared/ui/HeartAnimation'
+import { HeartIcon } from '@/shared/ui/HeartIcon'
 import { Skeleton } from '@/shared/ui/Skeleton'
 
 import cls from './CatItem.module.scss'
-import { isCatLiked } from '../../model/selectors/getLikedCats'
-import { catActions } from '../../model/slice/catSlice'
+import {
+    getAddedCatId,
+    getDeletedCatId,
+} from '../../model/selectors/getCatSelectors'
+import { addToFavorites } from '../../model/services/addToFavorites/addToFavorites'
+import { deleteFavorites } from '../../model/services/deleteFavorites/deleteFavorites'
 import { ICat } from '../../model/types/cat'
 
 interface CatProps {
@@ -27,17 +30,21 @@ export const CatItem = memo((props: CatProps) => {
 
     const dispatch = useAppDispatch()
 
-    const isLiked = useSelector(isCatLiked(cat.id))
+    const addedCatId = useSelector(getAddedCatId)
+    const deletedCatId = useSelector(getDeletedCatId)
 
-    const [isHover, bindHover] = useHover()
+    const isAddedLike = addedCatId === cat.id
+    const isDeletedLike = deletedCatId === cat.id
+
+    const isLiked = Boolean(cat.uniq)
 
     const onClickHandler = useCallback(() => {
-        dispatch(catActions.setIsLiked(cat))
-    }, [cat, dispatch])
-
-    const mod: Mods = { [cls.clicked]: isLiked }
-
-    const HeartIcon = isHover || isLiked ? HeartFull : Heart
+        if (isLiked) {
+            dispatch(deleteFavorites({ uniq: cat.uniq, catId: cat.id }))
+        } else {
+            dispatch(addToFavorites({ imageId: cat.id, subId: USER_ID }))
+        }
+    }, [cat.id, cat.uniq, dispatch, isLiked])
 
     return (
         <Card className={classNames(cls.catItem, {}, [className])}>
@@ -50,14 +57,15 @@ export const CatItem = memo((props: CatProps) => {
                         className={cls.img}
                         fallback={<Skeleton width={225} height={225} />}
                     />
-                    <Icon
-                        onClick={onClickHandler}
-                        clickable
-                        {...bindHover}
-                        Svg={HeartIcon}
-                        className={classNames(cls.likeIcon, mod, [className])}
+                    <HeartAnimationIcon
+                        isAddedLike={isAddedLike}
+                        isDeletedLike={isDeletedLike}
                     />
-                    <div className={cls.blur} />
+                    <HeartIcon
+                        className={cls.likeIcon}
+                        isLiked={isLiked}
+                        onClick={onClickHandler}
+                    />
                 </div>
             </div>
         </Card>

@@ -8,7 +8,7 @@ type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick'>
 
 interface IconBaseProps extends SvgProps {
     className?: string
-    Svg: React.FC<React.SVGProps<SVGSVGElement>>
+    Svg: React.FC<React.SVGProps<SVGSVGElement>> | null
 }
 
 interface NonClickableIconProps extends IconBaseProps {
@@ -33,6 +33,10 @@ export const Icon = memo((props: IconProps) => {
     } = props
 
     const additionalClass = clickable ? undefined : className
+
+    if (Svg === null) {
+        return
+    }
 
     const icon = (
         <Svg

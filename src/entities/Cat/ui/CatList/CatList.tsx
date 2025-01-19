@@ -5,7 +5,7 @@ import { HStack } from '@/shared/ui/Stack'
 import { Text } from '@/shared/ui/Text'
 
 import cls from './CatList.module.scss'
-import { usePostListSkeletons } from '../../model/lib/usePostListSkeleton'
+import { useCatListSkeletons } from '../../model/lib/useCatListSkeletons/useCatListSkeleton'
 import { ICat } from '../../model/types/cat'
 import { CatItem } from '../CatItem/CatItem'
 
@@ -18,7 +18,7 @@ interface CatListProps {
 export const CatList = memo((props: CatListProps) => {
     const { className, catList, isLoading } = props
 
-    const getPostSkeletons = usePostListSkeletons({})
+    const getCatSkeletons = useCatListSkeletons({})
 
     return (
         <HStack
@@ -37,7 +37,7 @@ export const CatList = memo((props: CatListProps) => {
                     style={{ width: '100%' }}
                 />
             )}
-            {isLoading && getPostSkeletons}
+            {isLoading && getCatSkeletons}
         </HStack>
     )
 })
