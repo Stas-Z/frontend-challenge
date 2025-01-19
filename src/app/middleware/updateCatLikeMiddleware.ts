@@ -19,6 +19,9 @@ export const updateCatLikeMiddleware: Middleware =
                         },
                     }),
                 )
+                store.dispatch(favoritePageActions.setHasMore())
+                store.dispatch(favoritePageActions.initState(false))
+                store.dispatch(favoritePageActions.setPage(1))
             }
         }
 

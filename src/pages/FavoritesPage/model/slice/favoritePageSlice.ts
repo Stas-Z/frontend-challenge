@@ -37,8 +37,11 @@ export const favoritePageSlice = createSlice({
         setLimit: (state, action: PayloadAction<number>) => {
             state.limit = action.payload
         },
-        initState: (state) => {
-            state._inited_favorite = true
+        setHasMore: (state) => {
+            state.hasMore = true
+        },
+        initState: (state, action: PayloadAction<boolean>) => {
+            state._inited_favorite = action.payload
         },
         removeFromLiked: favoriteListAdapter.removeOne,
     },

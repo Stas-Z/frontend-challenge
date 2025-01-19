@@ -16,7 +16,7 @@ export const initFavoriteCatsPage = createAsyncThunk<
     const inited = getFavoritePageHasInited(getState())
 
     if (!inited) {
-        dispatch(favoritePageActions.initState())
+        dispatch(favoritePageActions.initState(true))
         dispatch(fetchFavoriteCats())
     }
 })
