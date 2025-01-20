@@ -44,6 +44,7 @@ export const favoritePageSlice = createSlice({
             state._inited_favorite = action.payload
         },
         removeFromLiked: favoriteListAdapter.removeOne,
+        removeAll: favoriteListAdapter.removeAll,
     },
     extraReducers: (builder) => {
         builder

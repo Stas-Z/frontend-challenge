@@ -43,6 +43,8 @@ const FavoritesPage = (props: FavoritesPageProps) => {
                 catList={catList}
                 isLoading={isLoading}
                 className={cls.catList}
+                onScrollEnd={onLoadNextPart}
+                virtualize
             />
         )
     }
@@ -57,7 +59,7 @@ const FavoritesPage = (props: FavoritesPageProps) => {
 
     return (
         <Page
-            onScrollEnd={onLoadNextPart}
+            // onScrollEnd={onLoadNextPart}
             className={classNames(cls.favoritesPage, {}, [className])}
         >
             {content}

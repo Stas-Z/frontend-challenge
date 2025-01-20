@@ -12,8 +12,10 @@ if (!container) {
 }
 const root = createRoot(container)
 
+const ghPages = import.meta.env.VITE_GH_PAGES || '/'
+
 root.render(
-    <BrowserRouter>
+    <BrowserRouter basename={ghPages}>
         <StoreProvider>
             <ErrorBoundary>
                 <App />
