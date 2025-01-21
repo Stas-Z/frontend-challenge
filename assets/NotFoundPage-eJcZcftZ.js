@@ -1,0 +1,1 @@
+import{r as s,j as t,k as a}from"./index.DGh0gA7O.js";const n="MPqRYmx8",e={notFoundPage:n},r=({className:o})=>t.jsx("div",{className:a(e.notFoundPage,{},[o]),children:"Страница не найдена"}),d=s.memo(r);export{d as default};
