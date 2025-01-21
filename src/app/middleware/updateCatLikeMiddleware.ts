@@ -42,15 +42,17 @@ export const updateCatLikeMiddleware: Middleware =
                 )
 
                 const state = store.getState()
-                const { page } = state.favoriteList
-                updateFavoritePage(store, page, (draft) => {
-                    draft.push({
-                        id: payload.image_id,
-                        url: payload.url,
-                        uniq: payload.id,
-                        like: true,
+                const { page, hasMore } = state.favoriteList
+                if (!hasMore) {
+                    updateFavoritePage(store, page, (draft) => {
+                        draft.push({
+                            id: payload.image_id,
+                            url: payload.url,
+                            uniq: payload.id,
+                            like: true,
+                        })
                     })
-                })
+                }
             }
         }
 
