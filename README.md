@@ -133,13 +133,20 @@ cd frontend-challenge
 npm install
 ```
 
-4. Запустите проект:
+4. Настройте окружение. Зарегистрируйтесь на сайте [https://thecatapi.com/](https://thecatapi.com/) и получите x-api-key.
+   Создайте файл `.env.local` в корне проекта и добавьте его в переменную окружения:
+
+```env
+VITE_API_KEY='YOU_X_API_KEY'
+```
+
+5. Запустите проект:
 
 ```bash
 npm run start:vite
 ```
 
-5. Откройте приложение в браузере по адресу [http://localhost:3000](http://localhost:3000).
+6. Откройте приложение в браузере по адресу [http://localhost:3000](http://localhost:3000).
 
 ## Благодарности
 
