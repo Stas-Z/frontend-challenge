@@ -42,9 +42,15 @@ export const CatItem = memo((props: CatProps) => {
         if (isLiked) {
             dispatch(deleteFavorites({ uniq: cat.uniq, catId: cat.id }))
         } else {
-            dispatch(addToFavorites({ imageId: cat.id, subId: USER_ID }))
+            dispatch(
+                addToFavorites({
+                    imageId: cat.id,
+                    subId: USER_ID,
+                    url: cat.url,
+                }),
+            )
         }
-    }, [cat.id, cat.uniq, dispatch, isLiked])
+    }, [cat.id, cat.uniq, cat.url, dispatch, isLiked])
 
     return (
         <Card className={classNames(cls.catItem, {}, [className])}>

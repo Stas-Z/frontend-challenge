@@ -1,3 +1,5 @@
+export { favoritesPageApi } from './api/favoritesPageApi'
+
 export type { FavoritePageSchema } from './model/types/favoritePageSchema'
 
 export {

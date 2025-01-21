@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react'
+import { memo, useCallback } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -9,10 +9,12 @@ import { Text } from '@/shared/ui/Text'
 import { Page } from '@/widgets/Page'
 
 import cls from './FavoritesPage.module.scss'
-import { getFavoritePageIsLoading } from '../../model/selectors/getFavoritePageSelectors'
-import { fetchNextCatsPage } from '../../model/services/fetchNextCatsPage/fetchNextCatsPage'
-import { initFavoriteCatsPage } from '../../model/services/initFavoriteCatsPage/initFavoriteCatsPage'
-import { getFavoriteList } from '../../model/slice/favoritePageSlice'
+import { useGetFavoritesPage } from '../../api/favoritesPageApi'
+import {
+    getFavoritePageHasMore,
+    getFavoritePageNum,
+} from '../../model/selectors/getFavoritePageSelectors'
+import { favoritePageActions } from '../../model/slice/favoritePageSlice'
 
 interface FavoritesPageProps {
     className?: string
@@ -22,25 +24,25 @@ const FavoritesPage = (props: FavoritesPageProps) => {
     const { className } = props
 
     const dispatch = useAppDispatch()
+    const currentPage = useSelector(getFavoritePageNum)
+    const hasMore = useSelector(getFavoritePageHasMore)
 
-    const catList = useSelector(getFavoriteList.selectAll)
-
-    const isLoading = useSelector(getFavoritePageIsLoading)
+    const { data: rtkCatList, isLoading } = useGetFavoritesPage({
+        page: currentPage,
+    })
 
     const onLoadNextPart = useCallback(() => {
-        dispatch(fetchNextCatsPage())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(initFavoriteCatsPage())
-    }, [dispatch])
+        if (hasMore && !isLoading) {
+            dispatch(favoritePageActions.setPage(currentPage + 1))
+        }
+    }, [currentPage, dispatch, hasMore, isLoading])
 
     let content
 
-    if (catList.length) {
+    if (rtkCatList && rtkCatList.length) {
         content = (
             <CatList
-                catList={catList}
+                catList={rtkCatList}
                 isLoading={isLoading}
                 className={cls.catList}
                 onScrollEnd={onLoadNextPart}
@@ -48,7 +50,7 @@ const FavoritesPage = (props: FavoritesPageProps) => {
             />
         )
     }
-    if (!catList.length && !isLoading) {
+    if (!rtkCatList?.length && !isLoading) {
         content = (
             <Text
                 title="К сожалению вы не выбрали не одного котика :("
@@ -58,10 +60,7 @@ const FavoritesPage = (props: FavoritesPageProps) => {
     }
 
     return (
-        <Page
-            // onScrollEnd={onLoadNextPart}
-            className={classNames(cls.favoritesPage, {}, [className])}
-        >
+        <Page className={classNames(cls.favoritesPage, {}, [className])}>
             {content}
         </Page>
     )

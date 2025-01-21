@@ -4,6 +4,7 @@ import { catReducer } from '@/entities/Cat'
 import { catsPageReducer } from '@/pages/CatsPage'
 import { favoritePageReducer } from '@/pages/FavoritesPage'
 import { $api } from '@/shared/api/api'
+import { rtkApi } from '@/shared/api/rtkApi'
 
 import { StateSchema, ThunkExtraArg } from './StateSchema'
 import { updateCatLikeMiddleware } from '../../../middleware/updateCatLikeMiddleware'
@@ -13,6 +14,7 @@ export function createReduxStore(initialState?: StateSchema) {
         cat: catReducer,
         catList: catsPageReducer,
         favoriteList: favoritePageReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     }
 
     const extraArg: ThunkExtraArg = {
@@ -28,7 +30,7 @@ export function createReduxStore(initialState?: StateSchema) {
                 thunk: {
                     extraArgument: extraArg,
                 },
-            }).concat(updateCatLikeMiddleware),
+            }).concat(rtkApi.middleware, updateCatLikeMiddleware),
     })
 
     return store

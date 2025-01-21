@@ -5,18 +5,19 @@ import { ThunkConfig } from '@/app/providers/StoreProvider'
 interface AddToFavoritesProps {
     imageId: string
     subId: string
+    url?: string
 }
 export interface AddToFavoritesResponse {
-    message: string
     id: number
     image_id: string
+    url?: string
 }
 
 export const addToFavorites = createAsyncThunk<
     AddToFavoritesResponse,
     AddToFavoritesProps,
     ThunkConfig<string>
->('cat/addToFavorites', async ({ imageId, subId }, thunkAPI) => {
+>('cat/addToFavorites', async ({ imageId, subId, url }, thunkAPI) => {
     const { extra, rejectWithValue } = thunkAPI
 
     try {
@@ -35,6 +36,7 @@ export const addToFavorites = createAsyncThunk<
         return {
             ...response.data,
             image_id: imageId,
+            url,
         }
     } catch (e: any) {
         if (e.response && e.response.data.message) {
