@@ -28,3 +28,5 @@ type DeepPartial<T> = T extends object
 interface ImportMeta {
     readonly env: ImportMetaEnv
 }
+
+type ValueOf<T> = T[keyof T]

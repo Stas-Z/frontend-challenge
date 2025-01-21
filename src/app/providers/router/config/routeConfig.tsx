@@ -5,11 +5,12 @@ import { FavoritesPage } from '@/pages/FavoritesPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import {
     AppRoutes,
+    AppRoutesTypes,
     getRouteCats,
     getRouteFavorites,
 } from '@/shared/const/router'
 
-export const routeConfig: Record<AppRoutes, RouteProps> = {
+export const routeConfig: Record<AppRoutesTypes, RouteProps> = {
     [AppRoutes.CATS_PAGE]: {
         path: getRouteCats(),
         element: <CatsPage />,
